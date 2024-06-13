@@ -85,6 +85,11 @@ def calculate_surplus_data(sales_row):
     surplus_data = []
     for stock, sales in zip(stock_row, sales_row):
         surplus = int(stock) - sales
+        """
+        Need to use int() method to parse our strings into integers. 
+        We wrap this stock variable in the int() method. It will return
+        the converted integer, and then we can substract our sales value from it.
+        """
         surplus_data.append(surplus)
 
     return surplus_data
@@ -100,6 +105,9 @@ def main():
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_surplus_data(sales_data)
     print(new_surplus_data)
+    """
+    this print statement checks we get our value back
+    """
 
 
 print("Welcome to Love Sandwiches Data Automation")
