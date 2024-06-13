@@ -66,6 +66,16 @@ def update_sales_worksheet(data):
     print("Sales worksheet updated successfully.\n")
 
 
+def update_surplus_worksheet(data):
+    """
+    Update surplus worksheet, add new row with the list data provided
+    """
+    print("Updating surplus worksheet...\n")
+    surplus_worksheet = SHEET.worksheet("surplus")
+    surplus_worksheet.append_row(data)
+    print("Surplus worksheet updated successfully.\n")
+
+
 def calculate_surplus_data(sales_row):
     """
     Compare sales with stock and calculate the surplus for each item type.
@@ -82,8 +92,12 @@ def calculate_surplus_data(sales_row):
     Use a slice [-1] giving it the index of -1, this will slice the final item
     from the list and return it to the new stock variable.
     """
+
     surplus_data = []
     for stock, sales in zip(stock_row, sales_row):
+        """
+        zip() method to iterate through two lists at the same time.
+        """
         surplus = int(stock) - sales
         """
         Need to use int() method to parse our strings into integers. 
@@ -104,9 +118,9 @@ def main():
     sales_data = [int(num) for num in data]
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_surplus_data(sales_data)
-    print(new_surplus_data)
+    update_surplus_worksheet(new_surplus_data)
     """
-    this print statement checks we get our value back
+    call the function and pass it the data we want to insert
     """
 
 
